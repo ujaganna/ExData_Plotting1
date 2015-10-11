@@ -1,22 +1,10 @@
-## Getting full dataset
-
 setwd("C:/Users/Adarsh/Desktop/coursera/eda")
-df <- read.csv("household_power_consumption.txt", header=T, sep=';', na.strings="?", 
-                      nrows=2075259, check.names=F, stringsAsFactors=F, comment.char="", quote='\"')
-df <- as.Date(df$Date, format="%d/%m/%Y")
-
-## Subsetting the data
-df1 <- subset(df, subset=(Date >= "2007-02-01" & Date <= "2007-02-02"))
-rm(df)
-
-## Converting dates
-datetime <- paste(as.Date(df1$Date), data$Time)
-df1$Datetime <- as.POSIXct(datetime)
+data_full <- read.table("household_power_consumption.txt", header=TRUE, na.strings="?", sep=";")
+data <- data_full[(data_full$Date=="1/2/2007" | data_full$Date=="2/2/2007" ), ]
 
 ## Plot 1
-hist(data$Global_active_power, main="Global Active Power", 
-     xlab="Global Active Power (kilowatts)", ylab="Frequency", col="Red")
+hist(data$Global_active_power, main="Global Active Power", xlab="Global Active Power (kilowatts)", ylab="Frequency", col="Red", cex.sub=0.8)
 
-## Saving to file
+## export file
 dev.copy(png, file="plot1.png", height=480, width=480)
 dev.off()
