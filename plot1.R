@@ -3,7 +3,7 @@
 setwd("C:/Users/Adarsh/Desktop/coursera/eda")
 df <- read.csv("household_power_consumption.txt", header=T, sep=';', na.strings="?", 
                       nrows=2075259, check.names=F, stringsAsFactors=F, comment.char="", quote='\"')
-df <- as.Date(data_full$Date, format="%d/%m/%Y")
+df <- as.Date(df$Date, format="%d/%m/%Y")
 
 ## Subsetting the data
 df1 <- subset(df, subset=(Date >= "2007-02-01" & Date <= "2007-02-02"))
